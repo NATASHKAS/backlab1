@@ -1,10 +1,10 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 
-from module.db import CATEGORIES
-from module.schemas import CategorySchema
+from db import CATEGORIES
+from schemas import CategorySchema
 
-blp = Blueprint("category", name, description="Operations on category")
+blp = Blueprint("category", __name__, description="Operations on category")
 
 
 @blp.route("/category")

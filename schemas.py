@@ -17,3 +17,7 @@ class NoteSchema(Schema):
     category_id = fields.Int(required=True)
     time = fields.Str(required=True)
     sum = fields.Float(required=True)
+
+class NoteQuerySchema(Schema):
+    user_id = fields.Int()
+    category_id = fields.Int()

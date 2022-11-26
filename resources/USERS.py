@@ -1,10 +1,10 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 
-from module.db import USERS
-from module.schemas import UserSchema
+from db import USERS
+from schemas import UserSchema
 
-blp = Blueprint("user", name, description="Operations on user")
+blp = Blueprint("user", __name__, description="Operations on user")
 
 
 @blp.route("/user")

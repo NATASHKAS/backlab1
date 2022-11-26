@@ -1,10 +1,10 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 
-from module.db import NOTES, USERS, CATEGORIES
-from module.schemas import NoteSchema, RecordQuerySchema
+from db import NOTES, USERS, CATEGORIES
+from schemas import NoteSchema, NoteQuerySchema
 
-blp = Blueprint("note", name, description="Operations on record")
+blp = Blueprint("note", __name__, description="Operations on record")
 
 
 @blp.route("/note")
