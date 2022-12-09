@@ -3,7 +3,7 @@ from db import db
 
 
 class NoteModel(db.Model):
-    tablename = "note"
+    __tablename__ = "note"
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), unique=False, nullable=False)

@@ -31,9 +31,13 @@ class NoteList(MethodView):
     @blp.response(200, NoteSchema)
     def post(self, request_data):
         note = NoteModel(**request_data)
-        try:
-            db.session.add(note)
-            db.session.commit()
-        except IntegrityError:
-            abort(400, message="Error when creating note")
-        return note
+        category_id = request_data.get("category_id")
+        category_owner_id = CategoryModel.query.with_entities(CategoryModel.owner_id).filter_by(id=category_id).scalar()
+        if category_owner_id == request_data["user_id"] or category_owner_id is None:
+            try:
+                db.session.add(note)
+                db.session.commit()
+            except IntegrityError:
+                abort(400, message="Error when creating note")
+            return note
+        abort(403, message="User has no access to this category")

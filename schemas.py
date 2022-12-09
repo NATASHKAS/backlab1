@@ -9,7 +9,7 @@ class UserSchema(Schema):
 class CategorySchema(Schema):
     id = fields.Int(required=True)
     name = fields.Str(required=True)
-
+    owner_id = fields.Int(required=False)
 
 class NoteSchema(Schema):
     id = fields.Int(required=True)
