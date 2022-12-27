@@ -1,4 +1,5 @@
 from flask.views import MethodView
+from flask_jwt_extended import jwt_required
 from flask_smorest import Blueprint, abort
 
 from db import db
@@ -11,6 +12,7 @@ blp = Blueprint("note", __name__, description="Operations on note")
 
 @blp.route("/note")
 class NoteList(MethodView):
+    @jwt_required()
     @blp.arguments(NoteQuerySchema, location="query", as_kwargs=True)
     @blp.response(200, NoteSchema(many=True))
     def get(self, kwargs):
@@ -27,6 +29,7 @@ class NoteList(MethodView):
             return query
         return NoteModel.query.all()
 
+    @jwt_required()
     @blp.arguments(NoteSchema)
     @blp.response(200, NoteSchema)
     def post(self, request_data):
